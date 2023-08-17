@@ -1,5 +1,7 @@
-// core modules
+// core modules -> http
 const http = require('http')
+
+const url = require('url')
 
 // create server
 const server = http.createServer((req, res)=>{
@@ -29,7 +31,19 @@ const server = http.createServer((req, res)=>{
         res.write(JSON.stringify(users))
         res.end()
     }
+
+    const address_url = 'http://localhost:5000/contact?name=maruf&country=bangladesh'
+    const parsed_url = url.parse(address_url, true)
+
+    // get parsed url
+    // console.log(parsed_url)
+
+    // get query string
+    const queryObject = parsed_url.query
+    console.log(queryObject)
 })
+
+// console.log(url)
 
 // define port
 const PORT = 5000
